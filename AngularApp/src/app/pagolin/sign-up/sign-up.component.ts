@@ -14,13 +14,13 @@ export class SignUpComponent implements OnInit {
 
   constructor(private pagolinService: PagolinService) { }
 
-  ngOnInit() {
+  ngOnInit(){
     console.log("hello  I am ngoninit");
    
     console.log(" this.serverErrorMessages", this.serverErrorMessages);
   }
 
-  onSubmit(form: NgForm) {
+onSubmit(form: NgForm) {
     console.log("hello  I am in form age="+form.value.age); 
     this.pagolinService.postpagolin(form.value).subscribe(
       res => {
