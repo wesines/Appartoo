@@ -14,16 +14,16 @@ export class ListedesppangolinsComponent implements OnInit {
   serverErrorMessages;serverErrorDeleteMessages: string;
   pagolinDetails;
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+  idprofile:any;
   constructor(private pagolinService: PagolinService, private router: Router) { }
 
   ngOnInit() {
     this.resetForm();
     console.log("NGONINIT : listepangoliny avant requete base ");
-    let idprofile=this.pagolinService.getPagolinPayload();
+    this.idprofile=this.pagolinService.getPagolinPayload();
     this.pagolinService.getListPagolin().subscribe(
       res => { 
-     
+    
       this.pagolinDetails = res ;
       console.log("Liste de pagolindetails"+this.pagolinDetails)
      console.log("longueur du pagolin list"+this.pagolinDetails.length)

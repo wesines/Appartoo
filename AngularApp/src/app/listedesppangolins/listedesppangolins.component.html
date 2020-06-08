@@ -20,22 +20,24 @@
                     </tr>
                   </thead>
            <tbody>
+             
                <tr  *ngFor="let pag of pagolinDetails">
-              
+               
                   
-                   <td>{{pag.famille}}</td>
+                   <td  *ngIf="idprofile['_id'] != pag._id">{{pag.famille}}</td>
                    
-                   <td>{{pag.race}}</td>
+                   <td  *ngIf="idprofile['_id'] != pag._id">{{pag.race}}</td>
                   
-                   <td>{{pag.age}}</td>
+                   <td  *ngIf="idprofile['_id'] != pag._id">{{pag.age}}</td>
                    
-                   <td>{{pag.nourriture}}</td>
+                   <td  *ngIf="idprofile['_id'] != pag._id">{{pag.nourriture}}</td>
                    
-                   <td>{{pag.email}}</td>
+                   <td  *ngIf="idprofile['_id'] != pag._id">{{pag.email}}</td>
                  
-                   <td colspan="2" class="text-center">
+                   <td  *ngIf="idprofile['_id'] != pag._id" colspan="2" class="text-center">
                        <a (click)="supprimerPagolin(pag._id,ajoutForm)" class="action-btn"> <i class="material-icons">delete</i> </a>
                    </td>
+                
                </tr>
               
               
