@@ -7,7 +7,7 @@
 > (Afficher/Modifier) ses informations (age / famille / race / nourriture) 
 > (Ajouter/Supprimer) en amis un autre "Pangolin" parmi les autres Pangolins inscrits.
 
-**TECHNOLOGIESS**
+**TECHNOLOGIES utilisées**
 
 - EXPRESS JS
 - MONGO DB
