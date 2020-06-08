@@ -27,7 +27,7 @@ export class ListedesppangolinsComponent implements OnInit {
       this.pagolinDetails = res ;
       console.log("Liste de pagolindetails"+this.pagolinDetails)
      console.log("longueur du pagolin list"+this.pagolinDetails.length)
-      this.pagolinDetails.shift()
+     // this.pagolinDetails.shift()
       console.log("shift longueyr"+this.pagolinDetails.length)
   },
       err => { 
