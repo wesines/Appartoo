@@ -1,0 +1,77 @@
+
+  <!-- Success message -->
+  <div class="success" *ngIf="showSucessMessage">
+    Inscription réussie
+   </div>
+   
+   <!-- Error message -->
+   <div class="alert" *ngIf="serverErrorMessages">
+     {{serverErrorMessages}}
+   </div> 
+   <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+    <label class="active">Famille :</label>
+   <input type="text" #famille="ngModel" [(ngModel)]="pagolinService.selectedPagolin.famille" name="famille" placeholder="Famille"
+    required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !famille.valid }">
+    <div *ngIf="signUpForm.submitted && !famille.valid">
+    </div>
+    <label class="active">Age :</label>
+    <input type="text" #age="ngModel" [(ngModel)]="pagolinService.selectedPagolin.age" name="age" placeholder="Age"
+    required  pattern="^[1-9]{1,2}$"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !age.valid }">
+    <div *ngIf="signUpForm.submitted && !age.valid">
+      <label *ngIf="age.errors.pattern" class="validation-message">Age est compris entre 1 et 99</label>
+    </div>
+    <label class="active">Race :</label>
+    <input type="text" #race="ngModel" [(ngModel)]="pagolinService.selectedPagolin.race" name="race" placeholder="Race"
+    required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !race.valid }">
+    <div *ngIf="signUpForm.submitted && !race.valid">
+    </div>
+    <label class="active">Nourriture :</label>
+    <input type="text" #nourriture="ngModel" [(ngModel)]="pagolinService.selectedPagolin.nourriture" 
+    name="nourriture" placeholder="Nourriture" maxlength="20"
+    required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !nourriture.valid }">
+    <div *ngIf="signUpForm.submitted && !nourriture.valid">
+    </div>
+    <!--
+    <div class="input-field">
+      <select   name="nourriture" #nourriture="ngModel"
+           [(ngModel)]="pagolinService.selectedPagolin.nourriture" 
+                multiple     size="2">
+                <optgroup label="">
+       <option value="" disabled selected>Choisir la nourriture</option>
+         <option  [ngValue]="Insectes">Insectes</option>
+         <option  [ngValue]="Fourmis">Fourmis</option>
+       </optgroup>
+       </select>
+       <label>Nourriture</label>
+       </div>
+
+    <label>
+      <input type="checkbox" #nourriture="ngModel" [(ngModel)]="pagolinService.selectedPagolin.nourriture" name="nourriture" 
+      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !race.valid }">
+      <span>Insectes</span>
+      <div *ngIf="signUpForm.submitted && !race.valid">
+      </div>
+    </label>
+    <label>
+      <input type="checkbox" #nourriture="ngModel" [(ngModel)]="pagolinService.selectedPagolin.nourriture" name="nourriture" 
+      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !race.valid }">
+      <span>Insectes</span>
+      <div *ngIf="signUpForm.submitted && !race.valid">
+      </div>
+    </label>
+-->
+<label class="active">Email :</label>
+    <input type="text" #email="ngModel" [(ngModel)]="pagolinService.selectedPagolin.email" name="email" placeholder="Email"
+    required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+    <div *ngIf="signUpForm.submitted && email.errors">
+      <label *ngIf="email.errors.pattern" class="validation-message">Email invalide</label>
+    </div>
+    <label class="active">Mot de passe :</label>
+    <input type="password" #password="ngModel" [(ngModel)]="pagolinService.selectedPagolin.password" name="password" placeholder="Password"
+    minlength="4" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
+    <div *ngIf="signUpForm.submitted && password.errors">
+      <label *ngIf="password.errors.minlength" class="validation-message">Entrer au minimum 4 caractères.</label>
+    </div>
+    <input type="submit"  value="Sign Up">
+  </form>
+  

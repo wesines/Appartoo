@@ -1,0 +1,45 @@
+<nav>
+  <div class="nav-wrapper"  >
+    <a href="#" class="brand-logo">Pangolin </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li routerLinkActive="active" *ngIf="isAuth"  style="cursor: pointer;">
+        <a routerLink="/listPagolin"> Liste des amis pangolins</a></li>
+      <li routerLinkActive="active" *ngIf="isAuth"  style="cursor: pointer;">
+        <a routerLink="/pagolinProfile">   Mon Profil</a></li>
+   
+      
+      <li routerLinkActive="active" *ngIf="isAuth"  style="cursor: pointer;">
+        <a (click)="onSignOut()">Déconnexion</a></li>
+
+    </ul>
+  </div>
+</nav>
+
+
+<!--
+<nav>
+  <div class="nav-wrapper">         
+          <h1>   Pangolin</h1>
+      <table >
+        <tr>
+          <td routerLinkActive="active" *ngIf="isAuth"  style="cursor: pointer;">
+            <h3 routerLink="/listPagolin"> Liste des pangolins</h3>
+          </td>
+          <td routerLinkActive="active" *ngIf="isAuth"  style="cursor: pointer;">
+            <h3 routerLink="/pagolinProfile">   Détail</h3>
+          </td>
+          <td routerLinkActive="active" *ngIf="isAuth"  style="cursor: pointer;">
+            <h3 routerLink="/insert">   Ajouter un Pangolin</h3>
+          </td>
+          <td routerLinkActive="active" *ngIf="isAuth"  style="cursor: pointer;">
+          <h3 (click)="onSignOut()" style="cursor: pointer;">Déconnexion</h3>
+         
+          </td>
+        </tr>
+      </table>
+       
+         
+    </div>
+
+</nav>
+-->

@@ -1,0 +1,105 @@
+
+ <div class="row">
+    <div class="col s12"><app-header></app-header></div>
+    <div class="col s6">
+        <div class="wrapper">
+         
+            <div class="text-center" >
+             
+                <table *ngIf="pagolinDetails" class="table-fill" > 
+            <thead>
+                <tr>
+                    <th colspan="2" class="text-center">Profil Pagolin </th>
+                    <th>       
+                         <a (click)="onEdit()" 
+                         class="action-btn">
+                        <i class="material-icons">edit</i> </a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Famille : </td>
+                    <td>{{pagolinDetails.famille}}</td>
+                </tr>
+                <tr>
+                    <td>Race : </td>
+                    <td>{{pagolinDetails.race}}</td>
+                </tr>
+                <tr>
+                    <td>Age : </td>
+                    <td>{{pagolinDetails.age}}</td>
+                </tr>
+                <tr>
+                    <td>Nourriture : </td>
+                    <td>{{pagolinDetails.nourriture}}</td>
+                </tr>
+                <tr>
+                    <td>Email : </td>
+                    <td>{{pagolinDetails.email}}</td>
+                </tr>
+               
+                
+            </tbody>
+          </table>
+          </div></div>  
+        </div>
+    <div class="col s6">
+        
+        <div class="wrapper">
+        
+            
+            <div  class="text-center" >
+            <!-- Success message -->
+          <div class="success" *ngIf="showSucessMessage">
+      Modification effectuée avec succès     </div>
+           
+           <!-- Error message -->
+           <div class="alert" *ngIf="serverErrorMessages">
+             {{serverErrorMessages}}
+           </div>
+           <div  *ngIf="clicbutton">
+                <form #detailpangolinForm="ngForm" 
+                (ngSubmit)="detailpangolinForm.valid && onSubmit(detailpangolinForm)">
+                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="pagolinService.selectedPagolin._id">
+                      
+                    
+                    <label class="active">Famille :</label>
+
+            <input type="text" #famille="ngModel" [(ngModel)]="pagolinService.selectedPagolin.famille"  name="famille" placeholder="Famille"
+            required  [ngClass]="{'invalid-textbox' :detailpangolinForm.submitted && !famille.valid }">
+            <div *ngIf="detailpangolinForm.submitted && !famille.valid">
+            </div>
+            <label class="active">Age :</label>
+            <input type="text" #age="ngModel" [(ngModel)]="pagolinService.selectedPagolin.age" name="age" placeholder="Age"
+            required  pattern="^[1-9]{1,2}$"  [ngClass]="{'invalid-textbox' :detailpangolinForm.submitted && !age.valid }">
+            <div *ngIf="detailpangolinForm.submitted && !age.valid">
+              <label *ngIf="age.errors.pattern" class="validation-message">Age doit être compris entre 1 et 99</label>
+        
+            </div>
+
+            <label class="active">Nourriture :</label>
+            <input type="text" #nourriture="ngModel" [(ngModel)]="pagolinService.selectedPagolin.nourriture" 
+            name="nourriture" placeholder="Nourriture" maxlength="20"
+            required  [ngClass]="{'invalid-textbox' :detailpangolinForm.submitted && !nourriture.valid }">
+            <div *ngIf="detailpangolinForm.submitted && !nourriture.valid">
+            </div>
+            <p></p>
+            <label class="active">Race :</label>
+            <input type="text" #race="ngModel" [(ngModel)]="pagolinService.selectedPagolin.race" name="race" placeholder="Race"
+            required  [ngClass]="{'invalid-textbox' :detailpangolinForm.submitted && !race.valid }">
+            <div *ngIf="detailpangolinForm.submitted && !race.valid">
+            </div>
+       
+       
+            <input type="submit"  (click)="onSubmit(detailpangolinForm)" value="Modifier">
+          </form>
+          
+        </div> 
+          </div>
+          </div>
+          </div>
+  </div>
+
+
+
+

@@ -1,0 +1,151 @@
+
+    <div class="row"> 
+        <div class="col s12"><app-header></app-header></div>
+        <div class="col s6"><div class="wrapper">
+            <div class="text-center" >
+                <!-- Success message -->
+         <div class="success" *ngIf="showSucessDeleteMessage">
+           Suppression effectuée avec succès
+          </div>
+          <div>            Liste des  pangolins          </div>
+          
+               <table *ngIf="pagolinDetails" class="striped ,highlight"  > 
+                <thead>
+                    <tr>
+                        <th>Famille</th>
+                        <th>Race</th>
+                        <th>Age</th>
+                        <th>Nourriture</th>
+                        <th>Email</th>
+                    </tr>
+                  </thead>
+           <tbody>
+               <tr  *ngFor="let pag of pagolinDetails">
+              
+                  
+                   <td>{{pag.famille}}</td>
+                   
+                   <td>{{pag.race}}</td>
+                  
+                   <td>{{pag.age}}</td>
+                   
+                   <td>{{pag.nourriture}}</td>
+                   
+                   <td>{{pag.email}}</td>
+                 
+                   <td colspan="2" class="text-center">
+                       <a (click)="supprimerPagolin(pag._id,ajoutForm)" class="action-btn"> <i class="material-icons">delete</i> </a>
+                   </td>
+               </tr>
+              
+              
+           </tbody>
+         </table>
+         </div>
+       </div></div>
+        <div class="col s6"><div class="wrapper">
+       
+            
+            <div  class="text-center" >
+           
+           
+           
+           <!-- Error message -->
+           <div class="alert" *ngIf="serverErrorMessages">
+             {{serverErrorMessages}}
+           </div>
+           <div><h3>Ajouter un Ami Pangolin</h3></div>
+                <form #ajoutForm="ngForm" (ngSubmit)="ajoutForm.valid && onSubmit(ajoutForm)">
+
+                  
+                  <label class="active">Famille :</label>
+            <input type="text" #famille="ngModel" [(ngModel)]="pagolinService.selectedPagolin.famille" name="famille" placeholder="Famille"
+            required  [ngClass]="{'invalid-textbox' :ajoutForm.submitted && !famille.valid }">
+            <div *ngIf="ajoutForm.submitted && !famille.valid">
+            </div>
+
+ 
+            <label class="active">Age :</label>
+            <input type="text" #age="ngModel" [(ngModel)]="pagolinService.selectedPagolin.age" name="age" placeholder="Age"
+            required  pattern="^[1-9]{1,2}$"  [ngClass]="{'invalid-textbox' :ajoutForm.submitted && !age.valid }">
+            <div *ngIf="ajoutForm.submitted && !age.valid">
+              <label *ngIf="age.errors.pattern" class="validation-message">Age doit être compris entre 1 et 99</label>
+        
+            </div>
+            <label class="active">Race :</label>
+            <input type="text" #race="ngModel" [(ngModel)]="pagolinService.selectedPagolin.race" name="race" placeholder="Race"
+            required  [ngClass]="{'invalid-textbox' :ajoutForm.submitted && !race.valid }">
+            <div *ngIf="ajoutForm.submitted && !race.valid">
+            </div>
+            <label class="active">Nourriture :</label>
+            <input type="text" #nourriture="ngModel" [(ngModel)]="pagolinService.selectedPagolin.nourriture" 
+            name="nourriture" placeholder="Nourriture" maxlength="20"
+            required  [ngClass]="{'invalid-textbox' :ajoutForm.submitted && !nourriture.valid }">
+            <div *ngIf="ajoutForm.submitted && !nourriture.valid">
+            </div>
+        <p></p>
+        <label class="active">Email :</label>
+            <input type="text" #email="ngModel" [(ngModel)]="pagolinService.selectedPagolin.email" name="email" placeholder="Email"
+            required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :ajoutForm.submitted && !email.valid }">
+            <div *ngIf="ajoutForm.submitted && email.errors">
+              <label *ngIf="email.errors.pattern" class="validation-message">Email invalide</label>
+            </div>
+            <label class="active">Mot de passe :</label>
+            <input type="password" #password="ngModel" [(ngModel)]="pagolinService.selectedPagolin.password" name="password" placeholder="Password"
+            minlength="4" required [ngClass]="{'invalid-textbox' :ajoutForm.submitted && !password.valid }">
+            <div *ngIf="ajoutForm.submitted && password.errors">
+              <label *ngIf="password.errors.minlength" class="validation-message">Entrer au minimum 4 caractères.</label>
+            </div>
+            <input type="submit" value="Ajouter">
+          </form>
+          
+         
+          </div>
+          </div>
+        </div>
+      </div>
+            
+
+
+
+<!--
+<app-header></app-header>
+<div class="wrapper">
+     <div class="text-center" >
+          Success message 
+  <div class="success" *ngIf="showSucessMessage">
+    Suppression effectuée avec succès
+   </div>
+        <table *ngIf="pagolinDetails" class="striped ,highlight"  > 
+    <thead>
+
+        <tr>
+            <th colspan="2" class="text-center">Liste des pangolins</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr  *ngFor="let pag of pagolinDetails">
+       
+            <td>Famille</td>
+            <td>{{pag.famille}}</td>
+            <td>Race</td>
+            <td>{{pag.race}}</td>
+            <td>Age</td>
+            <td>{{pag.age}}</td>
+            <td>Nourriture</td>
+            <td>{{pag.nourriture}}</td>
+            <td>Email</td>
+            <td>{{pag.email}}</td>
+          
+            <td colspan="2" class="text-center">
+                <a (click)="supprimerPagolin(pag._id)" class="action-btn"> <i class="material-icons">delete</i> </a>
+            </td>
+        </tr>
+       
+       
+    </tbody>
+  </table>
+  </div>
+</div>
+
+-->
